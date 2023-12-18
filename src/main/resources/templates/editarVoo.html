@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Edição de Voo</title>
+	<link rel="icon" type="image/x-icon" href="./img/airplane.ico">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+	<h1>EDITAR VOO</h1>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+
+				<form class="mt-5" th:action="@{/voos/editarvoo/{IDVoo}(IDVoo=${voo.IDVoo})}" method="post">
+
+					<div class="form-group">
+						<label for="id"> ID: </label>
+						<input class="form-control" type="text" id="id" th:field="*{IDVoo}" th:readonly="readonly" />
+					</div>
+					<div>
+						<label for="numeroVoo"> Número do Voo: </label>
+						<input class="form-control" type="text" id="numeroVoo" th:field="*{numeroVoo}" />
+					</div>
+					<div>
+						<label for="aeroportoOrigem"> Aeroporto de Origem: </label>
+						<input class="form-control" type="text" id="aeroportoOrigem" th:field="*{aeroportoOrigem}" />
+					</div>
+					<div>
+						<label for="aeroportoDestino"> Aeroporto de Destino: </label>
+						<input class="form-control" type="text" id="aeroportoDestino" th:field="*{aeroportoDestino}" />
+					</div>
+					<div>
+						<label for="dataHoraPartida"> Data e Hora de Partida: </label>
+						<input class="form-control" type="text" id="dataHoraPartida" th:field="*{dataHoraPartida}" />
+					</div>
+					<div>
+						<label for="dataHoraChegada"> Data e Hora de Chegada: </label>
+						<input class="form-control" type="text" id="dataHoraChegada" th:field="*{dataHoraChegada}" />
+					</div>
+					<div>
+						<label for="companhiaAerea"> Companhia Aérea: </label>
+						<input class="form-control" type="text" id="companhiaAerea" th:field="*{companhiaAerea}" />
+					</div>
+					<div>
+						<label for="preco"> Preço: </label>
+						<input class="form-control" type="text" id="preco" th:field="*{preco}" />
+					</div>
+					<div>
+						<label for="novaData"> Nova Data: </label>
+						<input class="form-control" type="text" id="novaData" th:field="*{novaData}" />
+					</div>
+					<div class="d-flex justify-content-center">
+						<button type="submit"> Salvar </button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!--INDEX-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" type="image/x-icon" href="./img/airplane.ico">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body class="text-center">
+	<header>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+			<div class="container">
+
+				<a class="navbar-brand" href="#"></a>
+				<h5 style="color: white">RecodeTravels</h5>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+                            <a class="nav-link" href="/home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/usuarios">Usuários</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/voos">Voos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/reservas">Reservas</a>
+                        </li>
+
+
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<h1 class="mt-5">Lista de Reservas</h1>
+	<div class="container mt-5"> <a class="btn btn-primary mb-5" th:href="@{/reservas/novareserva}"> Adicionar Reserva
+		</a>
+	</div>
+
+	<!-- Lista de Reservas -->
+	<table class="table table-bordered">
+		<tr>
+			<th>ID Reserva</th>
+			<th>Status Reserva</th>
+			<th>Data e Hora Reserva</th>
+			<th>ID Usuário</th>
+			<th>ID Voo</th>
+			<th>Ações</th>
+		</tr>
+		<tr th:each="reserva : ${reservas}">
+			<td th:text="${reserva.IDReserva}"></td>
+			<td th:text="${reserva.statusReserva}"></td>
+			<td th:text="${reserva.dataHoraReserva}"></td>
+			<td>
+				<!-- Usa a notação ?. para verificar se o usuário não é nulo -->
+				<span th:text="${usuario?.IDUsuario}"></span>
+			</td>
+			<td>
+				<!-- Usa a notação ?. para verificar se o voo não é nulo -->
+				<span th:text="${voo?.IDVoo}"></span>
+			</td>
+			<td>
+				<div class="d-flex">
+					<form th:action="@{/reservas/deletarreserva/{IDReserva}(IDReserva=${reserva.IDReserva})}"
+						method="post">
+						<button class="btn btn-danger" type="submit">Deletar</button>
+						<a class="btn btn-success"
+							th:href="@{/reservas/editarreserva/{IDReserva}(IDReserva=${reserva.IDReserva})}">Editar</a>
+					</form>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+
+</body>
+
+</html>
